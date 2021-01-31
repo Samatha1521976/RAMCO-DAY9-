@@ -1,0 +1,118 @@
+Stored procedures
+TagHelpers
+Html Helpers
+Areas
+BootStrap
+FontAwesome 
+
+
+Storedprocedures
+================
+Database base first approach
+	Create stored procedures in the database
+        We invoke them in our applicaiton
+	FromSql
+	ExecuteSqlCommand
+
+
+Stored procedures in Code firs approach
+=======================================
+Step1: Install Libraries
+Step2: Connection string in appsettings.json
+Step3: ConextClass
+Step4: Student Class
+Step5: Register Context Class a Service
+Save and Build 
+Step7: Add-Migration AddTablesToDB
+Step8: update-Database
+
+Verify Database and Table 
+
+Step9: Add-Migration SP1
+In migratio folder we see a class called SP1
+class SPI
+{
+up()
+{
+
+}
+down()
+{
+}
+}
+
+Step10:
+Create Storedprocedures in UpMethod
+Step11:Update-Database
+Step12: Verify wether the stored procedures are ready
+Excute those stored procedures from back end once
+
+
+FromSqlRaw() //Select
+ExecuteSqlRawAsync() // DML operations
+
+
+Index[HttpGet]
+  var students = _context.Students.FromSqlRaw("SelectAllStudents").ToList();
+Create [HttpPost]
+  _context.Database.ExecuteSqlRaw("AddStudent @p0, @p1", student.Name,student.Marks);     
+Delete [HttpPost]
+await _context.Database.ExecuteSqlRawAsync("DeleteStudent @p0", id);
+Edit[HttpPost]
+ await _context.Database.ExecuteSqlRawAsync("UpdateStudent @p0, @p1, @p2", student.Id, student.Name, student.Marks);
+
+
+
+TagHelpers
+==========
+Views in MVC
+RazorPage in RazorPAges
+
+
+Are desinged using TagHelpers 
+
+Html helpers
+@Html.EditorFor(model => model.Name);
+
+taghelper
+<input asp-for=Model.Name />
+
+
+
+
+hyperlink
+@Html.ActionLink("click here for Page1","actionname","Controllername");
+
+<a asp-Page="Create"> click here for Page1" </a>
+
+
+
+<label asp-for=Student[0].Marks />
+<label asp-for=@item.Name />
+<a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+<a asp-page="Create">Create New</a>
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<label asp-for="Student.Id" class="control-label"></label>
+<input asp-for="Student.Id" class="form-control" />
+<span asp-validation-for="Student.Id" class="text-danger">
+<a asp-page="Index">Back to List</a>
+<form asp-page="" asp-page-handler="" asp-route-price="">
+<form asp-controller="Demo" asp-action="Index"  method="post">
+ <form asp-page-handler="" asp-route-price="">
+   <form asp-page="" asp-page-handler="" asp-route-price="">
+
+            <form asp-page="" asp-route-price="" >
+
+                <form asp-page="">
+
+  <input type="hidden" asp-for="Student.Id" />
+<partial name="_address"/>
+
+
+
+
+
+
+taghelpers are Html elements with bit C# code within, which will get executed at runtime
+and convert into html attribute
+
